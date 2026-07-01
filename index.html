@@ -1,1 +1,68 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BRY Link Hub</title><link rel="stylesheet" href="style.css"></head><body><div class="card"><img class="avatar" src="avatar.png"><h1>BÔ RY</h1><p>Premium Link Hub</p><a class="btn" href="#">Link 1</a><a class="btn" href="#">Link 2</a><a class="btn" href="#">Link 3</a></div><audio controls autoplay loop><source src="sound/amthanh.mp3"></audio><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HACKBORY | Link Hub Premium</title>
+    
+    <meta name="description" content="HACKBORY - Ultra Premium Link Hub">
+    <meta name="keywords" content="Bô Ry, Hackbory, Link Hub, Cyberpunk, Portfolio">
+    <meta name="author" content="Bô Ry">
+    <meta name="theme-color" content="#0f0f1a">
+    
+    <meta property="og:title" content="HACKBORY X">
+    <meta property="og:description" content="Premium Link Hub">
+    <meta property="og:type" content="website">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/avatar.png">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading" class="loading-screen">
+        <div class="glitch-text" data-text="INITIALIZING...">INITIALIZING...</div>
+        <div class="progress-bar"><div class="progress"></div></div>
+    </div>
+
+    <canvas id="matrix-canvas"></canvas>
+    <div class="bg-overlay"></div>
+    <div class="cursor-glow"></div>
+
+    <main class="glass-container rgb-border fade-in">
+        <header class="profile">
+            <div class="avatar-container float-anim">
+                <img id="avatar-img" src="" alt="Avatar">
+                <div class="status-indicator"></div>
+            </div>
+            <h1 class="display-name neon-text">
+                <span id="display-name"></span>
+                <svg id="verified-badge" class="verified" viewBox="0 0 24 24" fill="#00ffcc" width="24" height="24" style="display:none"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z"/></svg>
+            </h1>
+            <p id="username" class="username glow-text"></p>
+            <p id="bio" class="bio typing-effect"></p>
+        </header>
+
+        <div class="info-bar">
+            <span id="clock" class="digital-clock">00:00:00</span>
+            <span class="visitor-counter">VISITORS: <span id="visits">0</span></span>
+        </div>
+
+        <nav id="social-container" class="social-links"></nav>
+
+        <section id="links-container" class="links-grid"></section>
+
+        <div class="audio-controls glass-blur">
+            <button id="music-btn" class="magnetic-btn">🎵 Bật Nhạc</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+
+        <footer>
+            <p>&copy; <span id="year"></span> HACKBORY. Version <span id="version"></span></p>
+        </footer>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
