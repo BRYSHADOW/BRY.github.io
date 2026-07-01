@@ -27,7 +27,7 @@ const CONFIG = {
             icon: "🎮",
             title: "Roblox Scripts & GUI",
             description: "Anti-Fling, Teleport & Custom UI Resources",
-            url: "#"
+            url: "https://github.com/BRYSHADOW/BRY"
         },
         {
             icon: "🐍",
