@@ -34,4 +34,4 @@ const CONFIG = {
             title: "Python Automation",
             description: "Termux Scripts & APK Optimization",
             url: "#"
-        };     
+        },     
