@@ -1,0 +1,21 @@
+{
+  "name": "HACKBORY Premium Link Hub",
+  "short_name": "HACKBORY",
+  "description": "Ultra Premium Link Hub",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#00ffcc",
+  "icons": [
+    {
+      "src": "assets/avatar.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/avatar.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
