@@ -30,7 +30,7 @@ const CONFIG = {
             url: "https://bryshadow.github.io/BRY.github.io/"
         },
         {
-            icon: "🎮",
+            icon: "🌸",
             title: "Roblox Scripts & GUI",
             description: "Anti-Fling, Teleport & Custom UI Resources",
             url: "https://github.com/BRYSHADOW/BRY"
