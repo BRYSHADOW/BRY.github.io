@@ -39,7 +39,7 @@ const CONFIG = {
             icon: "🐍",
             title: "Python Automation",
             description: "Termux Scripts & APK Optimization",
-            url: "#" 
+            url: "https://github.com/BRYSHADOW/MouseTouchLockbyBRY" 
         } // Dòng cuối của mảng thì KHÔNG cần dấu phẩy, không được có chấm phẩy ở đây
     ]
 };
