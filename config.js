@@ -25,6 +25,12 @@ const CONFIG = {
     links: [
         {
             icon: "🎮",
+            title: "Delta-VN-By-Bô-Ry",
+            description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
+            url: "#"
+        },
+        {
+            icon: "🎮",
             title: "Roblox Scripts & GUI",
             description: "Anti-Fling, Teleport & Custom UI Resources",
             url: "https://github.com/BRYSHADOW/BRY"
