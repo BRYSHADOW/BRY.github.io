@@ -1,0 +1,1 @@
+Dat avatar.png vao thu muc goc va sound/amthanh.mp3 vao thu muc sound.
