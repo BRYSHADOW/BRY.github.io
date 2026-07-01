@@ -35,3 +35,5 @@ const CONFIG = {
             description: "Termux Scripts & APK Optimization",
             url: "#"
         }   
+   ]
+};
