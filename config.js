@@ -27,7 +27,7 @@ const CONFIG = {
             icon: "🎮",
             title: "Delta-VN-By-Bô-Ry",
             description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
-            url: "#"
+            url: "https://bryshadow.github.io/BRY.github.io/"
         },
         {
             icon: "🎮",
