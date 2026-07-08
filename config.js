@@ -26,7 +26,8 @@ const CONFIG = {
         {
             icon: "🎮",
             title: "Delta-VN-By-Bô-Ry",
-            description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
+            description: "App nhiều Tất Cả Game
+Trên Mọi Nền Tảng",
             url: "https://gofile.io/d/lwoeXo"
         },
         {
