@@ -22,13 +22,12 @@ const CONFIG = {
         instagram: "https://instagram.com",
         website: "https://bory.dev"
     },
-    links: [
+        links: [
         {
             icon: "🎮",
             title: "Delta-VN-By-Bô-Ry",
-            description: "App nhiều Tất Cả Game
-Trên Mọi Nền Tảng",
-            url: "https://gofile.io/d/lwoeXo"
+            description: "App nhiều Tất Cả Game Trên Mọi Nền Tảng",
+            url: "https://gofile.io/d/KNO2wS"
         },
         {
             icon: "🌸",
@@ -40,7 +39,7 @@ Trên Mọi Nền Tảng",
             icon: "🐍",
             title: "Python Automation",
             description: "Termux Scripts & APK Optimization",
-            url: "https://github.com/BRYSHADOW/MouseTouchLockbyBRY" 
-        } // Dòng cuối của mảng thì KHÔNG cần dấu phẩy, không được có chấm phẩy ở đây
+            url: "https://github.com/BRYSHADOW/MouseTouchLockbyBRY"
+        }
     ]
 };
