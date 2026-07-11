@@ -22,12 +22,12 @@ const CONFIG = {
         instagram: "https://instagram.com",
         website: "https://bory.dev"
     },
-        links: [
+            links: [
         {
             icon: "🎮",
             title: "Delta-VN-By-Bô-Ry",
             description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
-            url: "https://gofile.io/d/KNO2wS"
+            url: "https://gofile.io/d/VdQzQ6"
         },
         {
             icon: "🌸",
