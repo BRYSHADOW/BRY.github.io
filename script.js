@@ -37,57 +37,204 @@ document.addEventListener('DOMContentLoaded', () => {
         linksContainer.appendChild(a);
     });
 
-    // 3. Hệ thống Âm thanh (Auto-play sau tương tác đầu + LocalStorage)
-    const audio = new Audio(CONFIG.music);
-    audio.loop = true;
-    const volumeSlider = document.getElementById('volume-slider');
-    const musicBtn = document.getElementById('music-btn');
+    // 3. Hệ thống Âm thanh (Tự động nhận diện tên file MP3 + Lặp 1 bài + Tự upload)
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    let isLoopingSingle = false; 
+    let userInteracted = false;
+    const audio = new Audio();
     
-    // Khôi phục cài đặt Volume
+    const trackTitleEl = document.getElementById('track-title');
+    const musicBtn = document.getElementById('music-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const loopBtn = document.getElementById('loop-btn');
+    const playlistBtn = document.getElementById('playlist-btn');
+    const playlistModal = document.getElementById('playlist-modal');
+    const closePlaylistBtn = document.getElementById('close-playlist');
+    const playlistListEl = document.getElementById('playlist-list');
+    const trackCountEl = document.getElementById('track-count');
+    const volumeSlider = document.getElementById('volume-slider');
+    const customFileInput = document.getElementById('custom-file-input');
+
+    // --- HÀM THÔNG MINH: TỰ NHẬN DIỆN TÊN BÀI HÁT TỪ TÊN FILE ---
+    const getAutoTrackName = (pathOrObject) => {
+        // Nếu là dạng chuỗi "sound/hoa hồng đỏ.mp3" thì lấy chuỗi, nếu dạng object cũ thì lấy src
+        let filePath = typeof pathOrObject === 'string' ? pathOrObject : (pathOrObject.name || pathOrObject.src || "");
+        
+        // 1. Lấy phần tên file sau dấu / cuối cùng (Cắt bỏ chữ "sound/")
+        let fileName = filePath.split('/').pop().split('\\').pop();
+        
+        // 2. Tự động xóa đuôi file (.mp3, .wav, .m4a, .flac, .ogg...)
+        fileName = fileName.replace(/\.[^/.]+$/, "");
+        
+        // Trả về tên bài hát đã sạch đẹp (VD: "hoa hồng đỏ")
+        return fileName || "Unnamed Track";
+    };
+
+    const getTrackSrc = (pathOrObject) => {
+        return typeof pathOrObject === 'string' ? pathOrObject : pathOrObject.src;
+    };
+
+    // --- RENDER DANH SÁCH BÀI HÁT ---
+    const renderPlaylist = () => {
+        playlistListEl.innerHTML = '';
+        if (!CONFIG.playlist || CONFIG.playlist.length === 0) return;
+        
+        trackCountEl.textContent = CONFIG.playlist.length;
+        CONFIG.playlist.forEach((track, idx) => {
+            const autoName = getAutoTrackName(track);
+            const li = document.createElement('li');
+            li.className = `playlist-item ${idx === currentTrackIndex ? 'playing' : ''}`;
+            li.innerHTML = `<span>🎵 ${autoName}</span> <small>#${idx + 1}</small>`;
+            
+            li.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentTrackIndex = idx;
+                loadTrack(currentTrackIndex);
+                playMusic();
+                
+                // Bấm chọn bài trong list -> Tự động bật chế độ lặp lại 1 bài đó
+                if (!isLoopingSingle) toggleLoopMode(); 
+                
+                updatePlaylistUI();
+                playlistModal.style.display = 'none';
+            });
+            playlistListEl.appendChild(li);
+        });
+    };
+
+    const updatePlaylistUI = () => {
+        const items = playlistListEl.querySelectorAll('.playlist-item');
+        items.forEach((item, idx) => {
+            if (idx === currentTrackIndex) item.classList.add('playing');
+            else item.classList.remove('playing');
+        });
+    };
+
+    // --- TẢI BÀI HÁT ---
+    const loadTrack = (index) => {
+        if (CONFIG.playlist && CONFIG.playlist.length > 0) {
+            const track = CONFIG.playlist[index];
+            audio.src = getTrackSrc(track);
+            // Tự hiển thị tên đã nhận diện lên màn hình chạy chữ
+            trackTitleEl.textContent = `▶ ${getAutoTrackName(track)}`;
+            updatePlaylistUI();
+        }
+    };
+
+    // Khởi tạo
+    renderPlaylist();
+    loadTrack(currentTrackIndex);
+
+    // Khôi phục Volume
     const savedVolume = localStorage.getItem('hbx_volume');
     if (savedVolume) {
         audio.volume = savedVolume;
         volumeSlider.value = savedVolume;
     }
 
-    let isPlaying = false;
-    let userInteracted = false;
-
+    // --- CÁC HÀM ĐIỀU KHIỂN ---
     const playMusic = () => {
         audio.play().then(() => {
             isPlaying = true;
             musicBtn.textContent = '⏸ Tạm Dừng';
             musicBtn.style.background = 'var(--primary)';
             musicBtn.style.color = '#000';
-        }).catch(err => console.log("Trình duyệt chặn autoplay"));
+        }).catch(() => console.log("Chờ tương tác..."));
     };
 
-    // Tự động phát khi user click bất kỳ đâu lần đầu (Bypass Autoplay Policy)
-    document.body.addEventListener('click', () => {
-        if (!userInteracted && CONFIG.music) {
-            userInteracted = true;
-            playMusic();
+    const pauseMusic = () => {
+        audio.pause();
+        isPlaying = false;
+        musicBtn.textContent = '▶ Bật Nhạc';
+        musicBtn.style.background = 'transparent';
+        musicBtn.style.color = 'var(--primary)';
+    };
+
+    const nextTrack = () => {
+        currentTrackIndex = (currentTrackIndex + 1) % CONFIG.playlist.length;
+        loadTrack(currentTrackIndex);
+        if (isPlaying) playMusic();
+    };
+
+    const prevTrack = () => {
+        currentTrackIndex = (currentTrackIndex - 1 + CONFIG.playlist.length) % CONFIG.playlist.length;
+        loadTrack(currentTrackIndex);
+        if (isPlaying) playMusic();
+    };
+
+    const toggleLoopMode = () => {
+        isLoopingSingle = !isLoopingSingle;
+        if (isLoopingSingle) {
+            loopBtn.textContent = '🔂';
+            loopBtn.title = "Chế độ: Đang lặp lại 1 bài liên tục";
+            loopBtn.classList.add('active-loop');
+        } else {
+            loopBtn.textContent = '🔁';
+            loopBtn.title = "Chế độ: Lặp toàn bộ danh sách";
+            loopBtn.classList.remove('active-loop');
         }
-    }, { once: true });
+    };
+
+    audio.addEventListener('ended', () => {
+        if (isLoopingSingle) {
+            audio.currentTime = 0;
+            audio.play();
+        } else {
+            nextTrack();
+        }
+    });
 
     musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Ngăn kích hoạt sự kiện body click
-        if (isPlaying) {
-            audio.pause();
-            musicBtn.textContent = '🎵 Bật Nhạc';
-            musicBtn.style.background = 'transparent';
-            musicBtn.style.color = 'var(--primary)';
-        } else {
-            playMusic();
-        }
-        isPlaying = !isPlaying;
+        e.stopPropagation();
+        if (isPlaying) pauseMusic(); else playMusic();
         userInteracted = true;
+    });
+
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextTrack(); });
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevTrack(); });
+    loopBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleLoopMode(); });
+    
+    playlistBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playlistModal.style.display = (playlistModal.style.display === 'none') ? 'block' : 'none';
+    });
+    closePlaylistBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playlistModal.style.display = 'none';
     });
 
     volumeSlider.addEventListener('input', (e) => {
         audio.volume = e.target.value;
         localStorage.setItem('hbx_volume', e.target.value);
     });
+
+    // --- TỰ NHẬN DIỆN KHI KHÁCH UPLOAD FILE TỪ MÁY HỌ ---
+    customFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            audio.src = fileURL;
+            
+            // Tự động nhận diện tên file khách tải lên và XÓA ĐUÔI .mp3
+            const cleanUploadedName = file.name.replace(/\.[^/.]+$/, "");
+            trackTitleEl.textContent = `▶ FILE CỦA BẠN: ${cleanUploadedName}`;
+            
+            if (!isLoopingSingle) toggleLoopMode();
+            
+            playMusic();
+            userInteracted = true;
+            playlistModal.style.display = 'none';
+        }
+    });
+
+    document.body.addEventListener('click', () => {
+        if (!userInteracted && CONFIG.playlist && CONFIG.playlist.length > 0) {
+            userInteracted = true;
+            playMusic();
+        }
+    }, { once: true });
 
     // 4. Loading Screen & Visitor Counter
     setTimeout(() => {
