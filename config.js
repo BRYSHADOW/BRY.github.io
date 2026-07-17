@@ -6,11 +6,13 @@ const CONFIG = {
     background: "assets/background.jpg",
     // Bạn chỉ cần gõ đúng đường dẫn file MP3, web sẽ TỰ NHẬN DIỆN TÊN BÀI HÁT:
     playlist: [
-        "sound/Den-Muoi-Nam-ft-.mp3",
-        "sound/tiếng sáo ngàn năm - khúc tấu 1.mp3",
-        "sound/vọng nguyệt lầu (nhạc cổ).mp3",
-        "sound/khúc trầm hương.mp3",
-        "sound/thanh âm kiếm khách.mp3"
+        "sound/Đầu đường xóm chợ Obito.mp3",
+        "sound/Đánh đổi Obito.mp3",
+        "sound/Biên giới long bình Obito.mp3",
+        "sound/Mười năm Đen.mp3",
+        "sound/Trịu like Đen.mp3",
+        "sound/Tokyo Cyper.mp3",
+        "sound/Tag khỉ.mp3"
         // ... Cứ tải bao nhiêu file .mp3 bỏ vào thư mục sound/ thì thêm dòng vào đây bấy nhiêu!
     ],
     
