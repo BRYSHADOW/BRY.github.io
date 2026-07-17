@@ -6,7 +6,7 @@ const CONFIG = {
     background: "assets/background.jpg",
     // Bạn chỉ cần gõ đúng đường dẫn file MP3, web sẽ TỰ NHẬN DIỆN TÊN BÀI HÁT:
     playlist: [
-        "sound/hoa hồng đỏ.mp3",
+        "sound/Den-Muoi-Nam-ft-.mp3",
         "sound/tiếng sáo ngàn năm - khúc tấu 1.mp3",
         "sound/vọng nguyệt lầu (nhạc cổ).mp3",
         "sound/khúc trầm hương.mp3",
