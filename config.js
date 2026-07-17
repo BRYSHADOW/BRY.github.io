@@ -4,7 +4,16 @@ const CONFIG = {
     bio: "Ultra Premium Link Hub | Developer",
     avatar: "assets/avatar.png",
     background: "assets/background.jpg",
-    music: "sound/amthanh.mp3",
+    // Bạn chỉ cần gõ đúng đường dẫn file MP3, web sẽ TỰ NHẬN DIỆN TÊN BÀI HÁT:
+    playlist: [
+        "sound/hoa hồng đỏ.mp3",
+        "sound/tiếng sáo ngàn năm - khúc tấu 1.mp3",
+        "sound/vọng nguyệt lầu (nhạc cổ).mp3",
+        "sound/khúc trầm hương.mp3",
+        "sound/thanh âm kiếm khách.mp3"
+        // ... Cứ tải bao nhiêu file .mp3 bỏ vào thư mục sound/ thì thêm dòng vào đây bấy nhiêu!
+    ],
+    
     theme: "cyberpunk", // Tích hợp sẵn CSS biến đổi
     version: "10.0",
     verified: true,
