@@ -41,6 +41,12 @@ const CONFIG = {
             url: "https://gofile.io/d/knfT38"
         },
         {
+            icon: "🎮",
+            title: "Delta-QT-By-Bô-Ry",
+            description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
+            url: "https://delta.filenetwork.vip/android.html"
+        },
+        {
             icon: "🌸",
             title: "Roblox Scripts & GUI",
             description: "Anti-Fling, Teleport & Custom UI Resources",
