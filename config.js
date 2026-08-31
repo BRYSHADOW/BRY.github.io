@@ -38,7 +38,7 @@ const CONFIG = {
             icon: "🎮",
             title: "Delta-VN-By-Bô-Ry",
             description: "Hack Tất Cả Game Trên Mọi Nền Tảng Roblox",
-            url: "https://gofile.io/d/knfT38"
+            url: "https://gofile.io/d/mcs1MEXR"
         },
         {
             icon: "🎮",
