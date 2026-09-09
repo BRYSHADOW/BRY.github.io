@@ -54,9 +54,9 @@ const CONFIG = {
         },
         {
             icon: "🐍",
-            title: "Python Automation",
+            title: "Bypass",
             description: "Termux Scripts & APK Optimization",
-            url: "https://github.com/BRYSHADOW/MouseTouchLockbyBRY"
+            url: "https://baconbypass.xyz/"
         }
     ]
 };
