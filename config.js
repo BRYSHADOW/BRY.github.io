@@ -47,15 +47,9 @@ const CONFIG = {
             url: "https://delta.filenetwork.vip/android.html"
         },
         {
-            icon: "🌸",
-            title: "Roblox Scripts & GUI",
-            description: "Anti-Fling, Teleport & Custom UI Resources",
-            url: "https://github.com/BRYSHADOW/BRY"
-        },
-        {
-            icon: "🐍",
-            title: "Bypass",
-            description: "Termux Scripts & APK Optimization",
+            icon: "🥀",
+            title: "Bypass-Key-Delta",
+            description: "",
             url: "https://baconbypass.xyz/"
         }
     ]
