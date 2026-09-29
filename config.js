@@ -6,7 +6,7 @@ const CONFIG = {
     background: "assets/background.jpg",
     // Bạn chỉ cần gõ đúng đường dẫn file MP3, web sẽ TỰ NHẬN DIỆN TÊN BÀI HÁT:
     playlist: [
-        "sound/Ex's Hate Me - B Ray",
+        "sound/Ex's Hate Me - B Ray.mp3",
         "sound/DAWGS F.mp3",
         "sound/Trịu like Đen.mp3",
         "sound/Mười năm Đen.mp3",
